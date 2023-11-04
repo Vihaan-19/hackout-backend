@@ -31,7 +31,7 @@ const getSpecificPage = (page) => {
     fetchAndShowResults(URL)
 }
 
-const movieCard = (movie) =>
+const movieCard = (movie) => {
     `<div class="col">
           <div class="card">
             <a class="card-media" href="">
@@ -46,12 +46,18 @@ const movieCard = (movie) =>
               </div>
             </div>
           </div>
-        </div>`
+        </div>`}
+        movie.addEventListener('click', () => {
+            console.log(movie);
+            console.log("a");
+        });
 
 const showResults = (items) => {
     let content = !inSearchPage ? root.innerHTML : ""
     if (items && items.length > 0) {
         items.map((item) => {
+            console.log(items.length);
+
             let { poster_path, original_title, release_date, overview } = item
 
             if (poster_path) {

@@ -21,8 +21,12 @@ const userSchema = new mongoose.Schema({
         default: null
     },
     moviesWatched: [{
-        type: String,
-        default: 0
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Movie'
+    }],
+    team: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Team'
     }]
 });
 

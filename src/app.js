@@ -3,8 +3,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import IndexRoutes from '../routes/index.js'
 import connectDB from '../config/db.js';
+import path from 'path'
 dotenv.config();
 const app = express();
+app.set('view engine', 'ejs');
+app.set('views', path.resolve('./views'));
 
 connectDB();
 

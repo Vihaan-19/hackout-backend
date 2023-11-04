@@ -4,16 +4,15 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import User from '../models/user.model.js';
-// import { } from '../utils/responseCodes';
 
 router.use(express.json());
 dotenv.config();
 const signup_get =
     async (req, res) => {
         try {
-            res.status.sendFile('views/login.html', { root: __dirname });
+            res.render('login');
         } catch (error) {
-
+            console.log(error);
         }
     }
 const signup_post =
