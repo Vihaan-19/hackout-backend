@@ -6,7 +6,7 @@ import connectDB from '../config/db.js';
 dotenv.config();
 const app = express();
 
-// connectDB();
+connectDB();
 
 app.use(cors());
 app.use(express.json());
