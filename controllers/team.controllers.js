@@ -8,7 +8,8 @@ router.use(express.json());
 const createTeam =
     async (req, res) => {
         try {
-            const { name, userId } = req.body;
+            const { name } = req.body;
+            const userId = req.userId;
             const user = await User.findById(userId);
             const team = await Team.create({ name });
             team.users.push(user);
@@ -27,7 +28,7 @@ const joinTeam =
     async (req, res) => {
         try {
             const teamId = req.params.teamId;
-            const userId = req.query.userId;
+            const userId = req.userId;
             const thisTeam = await Team.findById(teamId);
             const user = await User.findById(userId);
             if (user && thisTeam) {

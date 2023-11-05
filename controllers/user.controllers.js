@@ -8,7 +8,7 @@ router.use(express.json());
 const getHomepage =
     async (req, res) => {
         try {
-            const user = await User.findById(req.params.userId);
+            const user = await User.findById(req.userId);
             if (user.team) {
                 console.log(user);
                 res.status(200).send(user.team.movieWatchlist);
@@ -27,12 +27,15 @@ const postHomepage =
     async (req, res) => {
         try {
             const movieId = req.query.movie;
-            const userId = req.params.userId;
+            const userId = req.userId;
             const user = await User.findById(userId);
             const movie = await Movie.create({ apiMovieId: movieId });
             movie.usersWhoWatched.push(user);
             user.moviesWatched.push(movie);
             if (user.team) {
+                if (!user.team.movieWatchlist)
+                    user.team.movieWatchlist = [];
+
                 user.team.movieWatchlist.push(movie);
             }
             res.send(user);
